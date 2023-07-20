@@ -18,7 +18,12 @@ function App() {
   const handleClick = (event) => {
     setOrderBy(event.target.id); 
     
-  }
+  };
+
+  const handleDelete = (id) => {
+    setAllContants(allContacts.filter((contact) => contact.id != id))
+    
+  };
 
   return (
     <div className="App">
@@ -35,6 +40,7 @@ function App() {
           <th>Popularity</th>
           <th>Won Oscar</th>
           <th>Won Emmy</th>
+          <th>Actions</th>
         </thead>
         <tbody>
           {allContacts.map(c => (<tr>
@@ -43,6 +49,7 @@ function App() {
             <td>{c.popularity.toFixed(2)}</td>
             <td> {c.wonOscar ? '🏆' : ''} </td>
             <td> {c.wonEmmy ? '🏆' : ''} </td>
+            <td key={c.id}> <button onClick={() => handleDelete(c.id)}>Delete</button> </td>
           </tr>))}
         </tbody>
       </table>
